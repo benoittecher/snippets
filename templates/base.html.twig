@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        {% endblock %}
+    </head>
+    <body>
+    
+<nav><a href="{{ path('home')}}">accueil</a> | <a href="{{ path('message')}}">liste des messages</a> | <a href="{{ path('message_add')}}">Ajouter message</a> | 
+{% if app.user %}
+    <a href="{{path('app_logout')}}">Se déconnecter</a>
+{% else %}
+    <a href="{{path('login')}}">Se connecter</a> | <a href="{{path('inscription')}}">S'inscrire</a>
+{% endif %}
+</nav>
+
+
+    {% for message in app.flashes('success') %}
+    <div class="alert alert-success">{{ message | raw }}</div>
+    {% endfor %}
+    {% for message in app.flashes('errors') %}
+    <div class="alert alert-danger">{{ message | raw }}</div>
+    {% endfor %}
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

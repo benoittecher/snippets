@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MessageController!{% endblock %}
+
+{% block body %}
+<h1>Bienvenue sur la page des messages</h1>
+    <p>Vous pouvez <a href="{{ path('message_add') }}">cliquer ici</a> pour ajouter un message.</p>
+
+
+<div class="example-wrapper">
+    <h2> Liste des messages</h1>
+    {% for m in messages %}
+      <table>
+        <tr>
+          
+            <td><a href="{{ path('message_show', { 'id' : m.id }) }}" style="height: 160px; display: flex; overflow: hidden; justify-content: center; align-items: center;">
+              {{m.objet}}
+            </a></td>
+            
+          
+          <td><a href="{{ path('message_update', {id: m.id}) }}" class="btn btn-success">Modifier</a> </td>
+          <td><a href="{{ path('message_delete', {id: m.id}) }}" class="btn btn-danger">Supprimer</a></td>
+        </tr>
+      </table>
+      
+    {% endfor %}
+
+</div>
+{% endblock %}

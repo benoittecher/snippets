@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>{{form_title}}</h1>
+    {{ form_start(form) }}
+        {{ form_row(form.objet, {
+        label: "Objet"
+        }) }}
+
+        {{ form_row(form.corps, {
+        label: "Message"
+        }) }}
+        <button type="submit" class="btn btn-success btn-block">
+            Enregistrer
+        </button>
+    {{ form_end(form) }}
+{% endblock %}

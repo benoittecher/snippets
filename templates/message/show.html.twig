@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+<h1>Votre message : </h1>
+
+    <table>
+        <tr>
+            <th>Objet du message</th>
+            <th>Corps du message</th>
+        </tr>
+        <tr>
+            <td>{{ message.objet }}</td>
+            <td>{{ message.corps }}</td>
+        </tr>
+        
+    </table>
+<p>Vous pouvez <a href="{{ path('message') }}">cliquer ici</a> pour retourner sur la liste des messages.</p>
+{% endblock %}

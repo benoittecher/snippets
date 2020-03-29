@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <h1>{{ title }}</h1>
+ 
+
+    {{ form_start(form) }}
+        <p>Voulez-vous vraiment supprimer le message ?</p>
+
+        <button type="submit" class="btn btn-danger">
+            Supprimer
+        </button>
+
+        <a href="{{ path(cancel_route) }}" class="btn btn-info">
+            Annuler
+        </a>
+    {{ form_end(form) }}
+{% endblock %}

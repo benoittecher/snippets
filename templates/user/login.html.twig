@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Connexion</h1>
+    <form class="" method="post" action="{{ path('login_check') }}">
+        <div class="form-group">
+            <input type="text" class="form-control" name="_username" placeholder="Email" value="{{ lastEmail }}" />
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" name="_password" placeholder="Mot de passe" />
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-success" value="connexion"/>
+        </div>
+    </form>
+    <p>Pas encore inscrit(e) ? <a href="{{path('inscription')}}">Cliquez-ici</a> pour nous rejoindre !</p>
+{% endblock %}
