@@ -142,4 +142,28 @@ class MessageController extends AbstractController
           'cancel_route' => 'message',
       ]);
     }
+
+    /**
+     * @Route("/recherche/", name="recherche")
+     */
+    public function search(Request $request)
+    {
+      if ($this->getUser() != null){
+        $term = $request -> query -> get('s');
+
+        $mRepo = $this -> getDoctrine() -> getRepository(Message::class);
+        
+
+        $messages = $mRepo -> findByTermAndUser($term, $this->getUser());
+                          
+                            
+        
+
+        return $this -> render('message/index.html.twig', [
+          'messages' => $messages,
+        ]);
+      } else {
+        $this->redirectToRoute('login');
+      }
+    }
 }

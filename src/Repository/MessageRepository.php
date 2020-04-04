@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Message;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
@@ -47,4 +48,25 @@ class MessageRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findByTerm($term){
+        $term = '%' . $term . '%';
+        $builder = $this -> createQueryBuilder('m');
+        return $builder
+            -> where('m.objet LIKE :term')
+            -> orWhere('m.corps LIKE :term')
+            -> setParameter(':term', $term)
+            -> getQuery()
+            -> getResult();
+      }
+      public function findByTermAndUser($term, User $user){
+        $term = '%' . $term . '%';
+        $builder = $this -> createQueryBuilder('m');
+        return $builder
+            -> where('m.objet LIKE :term OR m.corps LIKE :term')
+            -> andWhere('m.user = :user')
+            -> setParameter(':term', $term)
+            -> setParameter(':user', $user->getId())
+            -> getQuery()
+            -> getResult();
+      }
 }

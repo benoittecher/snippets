@@ -9,11 +9,17 @@
     </head>
     <body>
     
-<nav><a href="{{ path('home')}}">accueil</a> | <a href="{{ path('message')}}">liste des messages</a> | <a href="{{ path('message_add')}}">Ajouter message</a> | 
+<nav><a href="{{ path('home')}}">Accueil</a> | <a href="{{ path('message')}}">Liste des messages</a> | <a href="{{ path('message_add')}}">Ajouter message</a> | 
 {% if app.user %}
     <a href="{{path('app_logout')}}">Se déconnecter</a>
 {% else %}
     <a href="{{path('login')}}">Se connecter</a> | <a href="{{path('inscription')}}">S'inscrire</a>
+{% endif %}
+{% if app.user %}
+    <form action="{{ path('recherche') }}" method="get">
+                    <input  type="text" name="s">
+                    <button type="submit">Rechercher</button>
+                </form>
 {% endif %}
 </nav>
 
