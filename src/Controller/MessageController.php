@@ -21,7 +21,8 @@ class MessageController extends AbstractController
     public function index()
     {
       if ($this->getUser() === null){
-        return $this->render('login');
+        $this->addFlash('errors', 'Vous devez être connecté(e) pour pouvoir accéder à vos messages.');
+        return $this->redirectToRoute('login');
       }
       $user = $this->getUser();
       

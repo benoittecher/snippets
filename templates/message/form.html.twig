@@ -1,17 +1,60 @@
 {% extends 'base.html.twig' %}
+{% block title %}Snippets - Ajout d'un message{% endblock %}
 
 {% block body %}
 <h1>{{form_title}}</h1>
-    {{ form_start(form) }}
-        {{ form_row(form.objet, {
-        label: "Objet"
-        }) }}
+    <div id="form-container" class="container">
+        {{ form_start(form) }}
+            {{ form_row(form.objet, {
+            label: "Objet"
+            }) }}
 
         {{ form_row(form.corps, {
-        label: "Message"
+            label: "Message"
+            }) }}
+            <button type="submit" class="btn btn-success btn-block">
+                Valider
+            </button>
+            {#{% if form_title == 'Modifier un message' %}
+                <input type="text" placeholder="Copier le corps">
+            {% endif %}#}
+            
+        {{ form_end(form) }}
+    </div>
+
+    {#<h1>{{form_title}} : test Quill</h1>
+    <div id="form-container" class="container">
+        {{ form_start(form) }}
+            {{ form_row(form.objet, {
+            label: "Objet"
+            }) }}
+        <div class="row form-group">
+            <label for="message_corps">Corps du message</label>
+            <div name="message_corps" type="hidden" id="divinput">
+            
+            
+        {{ form_row(form.corps, {
+            type: "hidden"
         }) }}
-        <button type="submit" class="btn btn-success btn-block">
-            Enregistrer
-        </button>
-    {{ form_end(form) }}
+        </div>
+            <button type="submit" class="btn btn-success btn-block">
+                Valider
+            </button>
+            {#{% if form_title == 'Modifier un message' %}
+                <input type="text" placeholder="Copier le corps">
+            {% endif %}
+            
+        {{ form_end(form) }}#}
+    </div>
+    {#<script>
+        var e = document.getElementById('message_corps');
+        var d = document.createElement('div');
+        d.innerHTML = e.innerHTML;
+        e.parentNode.replaceChild(d, e);
+
+        var a = document.getElementById('divinput');
+        var b = document.createElement('input');
+        b.innerHTML = a.innerHTML;
+        a.parentNode.replaceChild(b, a);
+    </script>#}
 {% endblock %}

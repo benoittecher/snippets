@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+{% block title %}Snippets - Message détaillé{% endblock %}
 
 
 
@@ -12,7 +13,7 @@
         </tr>
         <tr>
             <td>{{ message.objet }}</td>
-            <td>{{ message.corps }}</td>
+            <td><textarea id="copyTarget" readonly>{{ message.corps | raw }}</textarea></td>
         </tr>
         
     </table>

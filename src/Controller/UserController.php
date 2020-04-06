@@ -72,7 +72,7 @@ class UserController extends AbstractController
         
         $error = $auth -> getLastAuthenticationError();
         if($error){
-          $this -> addFlash('errors', 'Problème d\'identifiant');
+          $this -> addFlash('errors', 'Problème d\'identifiants');
         }
         return $this->render('user/login.html.twig',[
           'lastEmail' => $lastEmail

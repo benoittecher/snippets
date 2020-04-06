@@ -1,7 +1,14 @@
 {% extends 'base.html.twig' %}
+{% block title %}Snippets - Connexion{% endblock %}
 
 {% block body %}
     <h1>Connexion</h1>
+{% if app.user %}
+    <div class="mb-3">
+        {% set e = (app.user.sexe == 'm') ? '' : 'e' %}
+        Bonjour {{ app.user.nom }}, vous êtes connecté{{e}}.<a href="{{ path('app_logout') }}"> Se déconnecter</a>
+    </div>
+{% else %}
     <form class="" method="post" action="{{ path('login_check') }}">
         <div class="form-group">
             <input type="text" class="form-control" name="_username" placeholder="Email" value="{{ lastEmail }}" />
@@ -10,8 +17,9 @@
             <input type="password" class="form-control" name="_password" placeholder="Mot de passe" />
         </div>
         <div class="form-group">
-            <input type="submit" class="btn btn-success" value="connexion"/>
+            <input type="submit" class="btn btn-success" value="Connexion"/>
         </div>
     </form>
     <p>Pas encore inscrit(e) ? <a href="{{path('inscription')}}">Cliquez-ici</a> pour nous rejoindre !</p>
+    {% endif %}
 {% endblock %}
